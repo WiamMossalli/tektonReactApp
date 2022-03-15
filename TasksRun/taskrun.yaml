@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: task-run
+spec:
+  taskRef:
+    name: ci
+  inputs:
+    resources:
+      - name: hello-app
+        resourceRef:
+          name: hello-app

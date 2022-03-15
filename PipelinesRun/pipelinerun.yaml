@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+ name: ci
+spec:
+ workspaces:
+   - name: output
+     description: The git repo will be cloned onto the volume backing this Workspace.
+ resources:
+   inputs:
+      - name: helloWorldApp
+        type : git
+ steps:
+   - name: npm-install
+   - name: test
+   - name: npm-build
+     image : node:14
+     command:
+        - /bin/sh
+        - -c 
+     workdingDir : /workspace/output/helloWorldApp
+     args: 
+        - npm run build     
